@@ -1,0 +1,24 @@
+{
+  "name": "ldwebsocketkit.js",
+  "homepage": "https://github.com/hkloudou/ldwebsocketkit.js",
+  "authors": [
+    "ld"
+  ],
+  "description": "a reconnect websocket js lib",
+  "main": "ldwebsocketkit.js",
+  "keywords": [
+    "websocket"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "reconnectingWebsocket": "^1.0.0"
+  }
+}
