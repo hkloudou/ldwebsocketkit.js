@@ -1,5 +1,4 @@
 push:
-	-git add . && git commit -m 'build auto commit' && git push origin --tags
-tag:
+	-git add . && git commit -m 'build auto commit'
 	-git tag -f 0.1.0
-x:
+	-git push origin master --tags
