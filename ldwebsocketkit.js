@@ -57,8 +57,8 @@ define([],function(){
     this.listen=function(chan,func){
       listens[chan]=func;
     };
-    this.send=function(){
-
+    this.send=function(data){
+      ws.send(data);
     };
   }
 
