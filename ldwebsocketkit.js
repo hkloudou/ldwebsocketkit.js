@@ -11,6 +11,7 @@ define([],function(){
     var ws = new reconnectingWebsocket(url);
     this.ws=ws;
     this.onopen=function(evt){};
+    var isFirstOpen = true;
     var self = this;
     var listens = {};
     var heartCheck = {
@@ -45,6 +46,8 @@ define([],function(){
     }
 
     ws.onopen = function(evt) {
+        isFirstOpen=false;
+        self.refreshsub();
         heartCheck.start();
         if (self.onopen) {
           self.onopen.apply(self);
@@ -59,12 +62,28 @@ define([],function(){
         }
       }
     };
-    self.listen=function(chan,func){
-      this.send(JSON.stringify({
-        "action":"sub",
-        "channel":"chan"
-      }));
+    this.refreshsub = function(){
+      for (var v in listens) {
+        if (listens.hasOwnProperty(v)) {
+          self.send(JSON.stringify({
+            "action":"sub",
+            "channel":v
+          }));
+        }
+      }
+    };
+    this.listen=function(chan,func){
+      //console.log("send");
+      //console.log("send2");
       listens[chan]=func;
+
+      if (isFirstOpen==false) {
+        self.send(JSON.stringify({
+          "action":"sub",
+          "channel":chan
+        }));
+      }
+      //console.log("sen3");
     };
     this.send=function(data){
       ws.send(data);
