@@ -10,6 +10,8 @@ define([],function(){
     }
     var ws = new reconnectingWebsocket(url);
     this.ws=ws;
+    this.onopen=function(evt){};
+    var self = this;
     var listens = {};
     var heartCheck = {
           timeout: 0,//60ms
@@ -44,6 +46,9 @@ define([],function(){
 
     ws.onopen = function(evt) {
         heartCheck.start();
+        if (self.onopen) {
+          self.onopen.apply(self);
+        }
     };
     ws.onmessage = function(e) {
       heartCheck.reset();
