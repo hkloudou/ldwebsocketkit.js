@@ -4,7 +4,7 @@
 bower install ldwebsocketkit.js --save
 ```
 
-### Demo for webpack
+### Demo
 ```
   var ws = require("ldwebsocketkit.js/ldwebsocketkit.js").NewSocket("/ws",5000);
 
@@ -12,3 +12,6 @@ bower install ldwebsocketkit.js --save
     console.log("system",obj);
   });
 ```
+### Tip
+* this project  depend on https://github.com/hkloudou/reconnecting-websocket
+* the best server side way in https://github.com/hkloudou/websoketkit
