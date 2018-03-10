@@ -59,7 +59,11 @@ define([],function(){
         }
       }
     };
-    this.listen=function(chan,func){
+    self.listen=function(chan,func){
+      this.send(JSON.stringify({
+        "action":"sub",
+        "channel":"chan"
+      }));
       listens[chan]=func;
     };
     this.send=function(data){
