@@ -64,10 +64,8 @@ define([],function(){
           };
         }
 
-
-        while(self.onopens.length > 0) {
-          var pop = self.onopens.pop();
-          pop.apply(self);
+        for (var i = 0; i < self.onopens.length; i++) {
+          self.onopens[i].apply(self);
         }
     };
     ws.onmessage = function(e) {
