@@ -100,14 +100,14 @@ define([],function(){
       }
       //console.log("sen3");
     };
-    this.send=function(data){
+    this.send=function(data,makesure){
       if (ws.readyState == WebSocket.OPEN){
         try{
           ws.send(data);
         } catch(e) {
           console.log(e);
         };
-      } else {
+      } else if (makesure){
         sendlist.unshift(data);
       }
     };
