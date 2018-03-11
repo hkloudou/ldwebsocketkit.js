@@ -14,6 +14,7 @@ define([],function(){
     var isFirstOpen = true;
     var self = this;
     var listens = {};
+    var sendlist = [];
     var heartCheck = {
           timeout: 0,//60ms
           timeoutObj: null,
@@ -49,6 +50,22 @@ define([],function(){
         isFirstOpen=false;
         self.refreshsub();
         heartCheck.start();
+        while (true) {
+          var sendItem = sendlist.pop();
+          if (undefined == sendItem) {
+            break;
+          }
+          //console.log(sendItem);
+          //return;
+          try{
+            ws.send(sendItem);
+          } catch(e) {
+            console.log(e);
+          };
+        }
+
+
+
         if (self.onopen) {
           self.onopen.apply(self);
         }
@@ -86,7 +103,15 @@ define([],function(){
       //console.log("sen3");
     };
     this.send=function(data){
-      ws.send(data);
+      if (ws.readyState == WebSocket.OPEN){
+        try{
+          ws.send(data);
+        } catch(e) {
+          console.log(e);
+        };
+      } else {
+        sendlist.unshift(data);
+      }
     };
   }
 
