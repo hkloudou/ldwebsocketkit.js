@@ -10,7 +10,7 @@ define([],function(){
     }
     var ws = new reconnectingWebsocket(url);
     this.ws=ws;
-    this.onopen=function(evt){};
+    this.onopens=[];
     var isFirstOpen = true;
     var self = this;
     var listens = {};
@@ -65,9 +65,9 @@ define([],function(){
         }
 
 
-
-        if (self.onopen) {
-          self.onopen.apply(self);
+        while(self.onopens.length > 0) {
+          var pop = self.onopens.pop();
+          pop.apply(self);
         }
     };
     ws.onmessage = function(e) {
