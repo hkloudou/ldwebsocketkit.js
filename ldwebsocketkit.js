@@ -11,7 +11,7 @@ define([],function(){
     var ws = new reconnectingWebsocket(url, null, options);
     this.ws=ws;
     this.onopenSendData=[];
-    var isFirstOpen = true;
+    //var isFirstOpen = true;
     var self = this;
     var listens = {};
     var sendlist = [];
@@ -50,7 +50,7 @@ define([],function(){
 
     ws.onopen = function(evt) {
         console.log("on open");
-        isFirstOpen=false;
+        //isFirstOpen=false;
         //self.refreshSubscriptionListens();  already insert to onopenSendData
         if (self.onopenSendData.length > 1) {
           self.send(self.onopenSendData);
@@ -111,7 +111,7 @@ define([],function(){
     };
 
     this.send=function(data,makesure){
-      console.log("send",data);
+      console.log("send",WebSocket.OPEN, WebSocket.CONNECTING, ws.readyState ,data);
       if (ws.readyState == WebSocket.OPEN){
         try{
           if (typeof data == "object") {
