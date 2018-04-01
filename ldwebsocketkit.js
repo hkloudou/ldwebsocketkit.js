@@ -111,7 +111,7 @@ define([],function(){
     };
 
     this.send=function(data,makesure){
-      console.log("send",WebSocket.OPEN, WebSocket.CONNECTING, ws.readyState ,data);
+      //console.log("send",WebSocket.OPEN, WebSocket.CONNECTING, ws.readyState ,data);
       if (ws.readyState == WebSocket.OPEN){
         try{
           if (typeof data == "object") {
