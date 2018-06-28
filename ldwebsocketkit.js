@@ -49,10 +49,10 @@ define([],function(){
     }
 
     ws.onopen = function(evt) {
-        console.log("on open");
+        //console.log("on open");
         //isFirstOpen=false;
         //self.refreshSubscriptionListens();  already insert to onopenSendData
-        if (self.onopenSendData.length > 1) {
+        if (self.onopenSendData.length > 0) {
           self.send(self.onopenSendData);
         }
         heartCheck.start();
